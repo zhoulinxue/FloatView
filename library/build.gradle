@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+publish {
+    repoName = 'common'//远程仓库名字,不指明，默认是上传到maven
+    userOrg = 'zhx'//bintray.com用户名
+    groupId = 'org.zhx.common'//jcenter上的路径,bintray上创建Package时填写的Version control项
+    artifactId = 'commonOkhttp'//项目名称，bintray上创建Package时填写的Name项
+    publishVersion = '0.1.0'//版本号
+    desc = 'easy floatView'//描述，不重要
+    website = 'https://github.com/zhoulinxue/CommonOkHttp.git'//网站，最好有，不重要
+}
+android {
+    compileSdkVersion 29
+
+
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+}
