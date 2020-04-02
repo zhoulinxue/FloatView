@@ -38,6 +38,7 @@ android.enableJetifier=true
 --
 
 **v0.3.0**
+
 修复 application  实现了Application.ActivityLifecycleCallbacks 可能造成的bug
 
 ```
