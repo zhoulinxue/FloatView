@@ -12,7 +12,7 @@ allprojects {
     }
 }
 ```
-Androidx
+Androidx:
 ```
 	dependencies {
 	        implementation 'org.zhx.common:floatView:0.1.0'
@@ -24,7 +24,12 @@ Androidx
 	       implementation 'org.zhx.common:floatView:0.2.0'
 	}
 ```
-方式二或在gradle.properties 添加：
+方式二:在gradle.properties 添加：
+```
+	dependencies {
+	        implementation 'org.zhx.common:floatView:0.1.0'
+	}
+```
 ```
 android.useAndroidX=true
 # Automatically convert third-party libraries to use AndroidX
