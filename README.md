@@ -14,13 +14,13 @@ allprojects {
 Androidx:
 ```
 	dependencies {
-	        implementation 'org.zhx.common:floatView:0.1.0'
+	        implementation 'org.zhx.common:floatView:0.3.0'
 	}
 ```
 注意：appcompat （v7包）适配 方式一：
 ```
 	dependencies {
-	       implementation 'org.zhx.common:floatView:0.2.0'
+	       implementation 'org.zhx.common:floatView:0.4.0'
 	}
 ```
 方式二:在gradle.properties 添加：
