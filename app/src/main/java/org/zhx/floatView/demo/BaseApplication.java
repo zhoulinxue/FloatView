@@ -74,7 +74,7 @@ public class BaseApplication extends Application {
 
         @Override
         public void onViewUpdateMove() {
-            Log.d(TAG, "onViewUpdateMove ");
+
         }
 
         @Override

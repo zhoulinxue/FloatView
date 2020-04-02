@@ -7,8 +7,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 
-import androidx.annotation.RequiresApi;
 
 import org.zhx.floatView.api.PermissionListener;
 import org.zhx.floatView.utils.PermissionUtil;
