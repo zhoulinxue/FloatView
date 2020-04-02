@@ -3,8 +3,7 @@
 ## 效果图
 ![悬浮按钮图](https://github.com/zhoulinxue/FloatView/blob/master/slide.gif)
 ===
-##集成：
-===
+## 集成：
 ```
 allprojects {
     repositories {      
@@ -37,8 +36,8 @@ android.enableJetifier=true
 ```
 
 
-##原著特性：
-===
+## 原著特性：
+
 
 1.支持拖动，提供自动贴边等动画
 
