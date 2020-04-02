@@ -1,6 +1,7 @@
 package org.zhx.floatView;
 
 import android.animation.TimeInterpolator;
+import android.app.Application;
 import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.MainThread;
@@ -31,6 +32,12 @@ public class FloatWindow {
 
     }
 
+    private static Application.ActivityLifecycleCallbacks activityLifecycleCallbacks;
+
+    public static void init(Application.ActivityLifecycleCallbacks actLifecycleCallbacks) {
+        activityLifecycleCallbacks = actLifecycleCallbacks;
+    }
+
     private static final String mDefaultTag = "default_float_window_tag";
     private static Map<String, IFloatWindow> mFloatWindowMap;
 
@@ -46,7 +53,11 @@ public class FloatWindow {
 
     @MainThread
     public static B with(@NonNull Context applicationContext) {
-        return mBuilder = new B(applicationContext);
+        mBuilder = new B(applicationContext);
+        if (activityLifecycleCallbacks != null) {
+            mBuilder.setActivityLifecycleCallbacks(activityLifecycleCallbacks);
+        }
+        return mBuilder;
     }
 
     public static void destroy() {
@@ -81,9 +92,19 @@ public class FloatWindow {
         boolean mDesktopShow;
         PermissionListener mPermissionListener;
         ViewStateListener mViewStateListener;
+        Application.ActivityLifecycleCallbacks activityLifecycleCallbacks;
 
         private B() {
 
+        }
+
+        public Application.ActivityLifecycleCallbacks getActivityLifecycleCallbacks() {
+            return activityLifecycleCallbacks;
+        }
+
+        public B setActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks activityLifecycleCallbacks) {
+            this.activityLifecycleCallbacks = activityLifecycleCallbacks;
+            return this;
         }
 
         B(Context applicationContext) {
