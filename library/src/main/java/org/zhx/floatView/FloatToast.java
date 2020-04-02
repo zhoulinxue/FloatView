@@ -27,12 +27,17 @@ class FloatToast extends FloatView {
 
     private int mWidth;
     private int mHeight;
+    private int animateStyle;
 
 
     FloatToast(Context applicationContext) {
         toast = new Toast(applicationContext);
     }
 
+    FloatToast(Context applicationContext, int style) {
+        this.animateStyle = style;
+        toast = new Toast(applicationContext);
+    }
 
     @Override
     public void setSize(int width, int height) {
@@ -85,6 +90,9 @@ class FloatToast extends FloatView {
             params.width = mWidth;
             params.height = mHeight;
             params.windowAnimations = 0;
+            if(animateStyle!=0){
+                params.windowAnimations=animateStyle;
+            }
             Field tnNextViewField = mTN.getClass().getDeclaredField("mNextView");
             tnNextViewField.setAccessible(true);
             tnNextViewField.set(mTN, toast.getView());

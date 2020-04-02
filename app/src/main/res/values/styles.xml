@@ -8,6 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-
+    <style name="windAnim" parent="@android:style/Animation.Dialog">
+        <item name="android:windowEnterAnimation">@anim/left_in_animate</item>
+        <item name="android:windowExitAnimation">@anim/custom_bottom_dialog_exit</item>
+    </style>
 
 </resources>

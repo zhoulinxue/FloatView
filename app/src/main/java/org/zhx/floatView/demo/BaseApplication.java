@@ -48,11 +48,12 @@ public class BaseApplication extends Application implements Application.Activity
                 .setHeight(Screen.width, 0.2f)
                 .setX(Screen.width, 0.8f)
                 .setY(Screen.height, 0.3f)
-                .setMoveType(MoveType.slide, 100, -100)
+                .setMoveType(MoveType.slide, 0, 0)
                 .setMoveStyle(500, new BounceInterpolator())
                 .setFilter(true, A_Activity.class, C_Activity.class)
                 .setViewStateListener(mViewStateListener)
                 .setPermissionListener(mPermissionListener)
+                .setAnimationStyle(R.style.windAnim)
                 .setDesktopShow(true)
                 .build();
 

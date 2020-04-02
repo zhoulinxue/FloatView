@@ -28,7 +28,7 @@ class FloatPhone extends FloatView {
     private boolean isRemove = false;
     private PermissionListener mPermissionListener;
 
-    FloatPhone(Context applicationContext, PermissionListener permissionListener) {
+    FloatPhone(Context applicationContext, int animateStyle,PermissionListener permissionListener) {
         mContext = applicationContext;
         mPermissionListener = permissionListener;
         mWindowManager = (WindowManager) applicationContext.getSystemService(Context.WINDOW_SERVICE);
@@ -38,6 +38,9 @@ class FloatPhone extends FloatView {
                 | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
                 | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
         mLayoutParams.windowAnimations = 0;
+        if(animateStyle!=0){
+            mLayoutParams.windowAnimations=animateStyle;
+        }
     }
 
     @Override

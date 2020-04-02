@@ -6,11 +6,14 @@ import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 
+import androidx.annotation.AnimRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
 
 import org.zhx.floatView.api.PermissionListener;
 import org.zhx.floatView.api.ViewStateListener;
@@ -94,9 +97,24 @@ public class FloatWindow {
         PermissionListener mPermissionListener;
         ViewStateListener mViewStateListener;
         Application.ActivityLifecycleCallbacks activityLifecycleCallbacks;
+        @StyleRes
+        private int animtStyle;
 
         private B() {
 
+        }
+
+        public int getAnimtStyle() {
+            return animtStyle;
+        }
+
+        public void setAnimtStyle(int animtStyle) {
+            this.animtStyle = animtStyle;
+        }
+
+        public B setAnimationStyle(@StyleRes int style) {
+            this.animtStyle=style;
+            return this;
         }
 
         public Application.ActivityLifecycleCallbacks getActivityLifecycleCallbacks() {
