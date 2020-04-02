@@ -13,7 +13,6 @@ import org.zhx.floatView.api.LifecycleListener;
 import org.zhx.floatView.api.ResumedListener;
 
 
-
 /**
  * Copyright (C), 2015-2020
  * FileName: LifecycleListener2
@@ -41,14 +40,15 @@ class FloatLifecycle extends BroadcastReceiver implements Application.ActivityLi
     private LifecycleListener mLifecycleListener;
     private static ResumedListener sResumedListener;
     private static int num = 0;
+    Application.ActivityLifecycleCallbacks activityLifecycleCallbacks;
 
-
-    FloatLifecycle(Context applicationContext, boolean showFlag, Class[] activities, LifecycleListener lifecycleListener) {
+    FloatLifecycle(Context applicationContext, boolean showFlag, Class[] activities, Application.ActivityLifecycleCallbacks activityLifecycleCallbacks, LifecycleListener lifecycleListener) {
         this.showFlag = showFlag;
         this.activities = activities;
         num++;
         mLifecycleListener = lifecycleListener;
         mHandler = new Handler();
+        this.activityLifecycleCallbacks = activityLifecycleCallbacks;
         ((Application) applicationContext).registerActivityLifecycleCallbacks(this);
         applicationContext.registerReceiver(this, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
@@ -88,6 +88,9 @@ class FloatLifecycle extends BroadcastReceiver implements Application.ActivityLi
         if (appBackground) {
             appBackground = false;
         }
+        if (activityLifecycleCallbacks != null) {
+            activityLifecycleCallbacks.onActivityResumed(activity);
+        }
     }
 
     @Override
@@ -102,7 +105,9 @@ class FloatLifecycle extends BroadcastReceiver implements Application.ActivityLi
                 }
             }
         }, delay);
-
+        if (activityLifecycleCallbacks != null) {
+            activityLifecycleCallbacks.onActivityPaused(activity);
+        }
     }
 
     @Override
@@ -111,6 +116,9 @@ class FloatLifecycle extends BroadcastReceiver implements Application.ActivityLi
             mLifecycleListener.onAppforeground();
         }
         startCount++;
+        if (activityLifecycleCallbacks != null) {
+            activityLifecycleCallbacks.onActivityStarted(activity);
+        }
     }
 
 
@@ -119,6 +127,9 @@ class FloatLifecycle extends BroadcastReceiver implements Application.ActivityLi
         startCount--;
         if (startCount == 0) {
             mLifecycleListener.onAppBackground();
+        }
+        if (activityLifecycleCallbacks != null) {
+            activityLifecycleCallbacks.onActivityStopped(activity);
         }
     }
 
@@ -136,18 +147,25 @@ class FloatLifecycle extends BroadcastReceiver implements Application.ActivityLi
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+        if (activityLifecycleCallbacks != null) {
+            activityLifecycleCallbacks.onActivityCreated(activity, savedInstanceState);
+        }
     }
 
 
     @Override
     public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+        if (activityLifecycleCallbacks != null) {
+            activityLifecycleCallbacks.onActivitySaveInstanceState(activity, outState);
+        }
 
     }
 
     @Override
     public void onActivityDestroyed(Activity activity) {
-
+        if (activityLifecycleCallbacks != null) {
+            activityLifecycleCallbacks.onActivityDestroyed(activity);
+        }
     }
 
 

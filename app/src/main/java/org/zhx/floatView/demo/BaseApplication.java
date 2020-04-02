@@ -69,41 +69,49 @@ public class BaseApplication extends Application {
     private ViewStateListener mViewStateListener = new ViewStateListener() {
         @Override
         public void onPositionUpdate(int x, int y) {
+            //TODO 图标 坐标更新
             Log.d(TAG, "onPositionUpdate: x=" + x + " y=" + y);
         }
 
         @Override
         public void onViewUpdateMove() {
+            //TODO 图标 移动
             Log.d(TAG, "onViewUpdateMove ");
         }
 
         @Override
         public void onShow() {
+            //TODO 图标显示
             Log.d(TAG, "onShow");
         }
 
         @Override
         public void onHide() {
+            //图标隐藏
             Log.d(TAG, "onHide");
         }
 
         @Override
         public void onDismiss() {
+            //图标消失
             Log.d(TAG, "onDismiss");
         }
 
         @Override
         public void onMoveAnimStart() {
+            //TODO 手指离开 图标动画 开始
             Log.d(TAG, "onMoveAnimStart");
         }
 
         @Override
         public void onMoveAnimEnd() {
+            //TODO  图标动画 结束
             Log.d(TAG, "onMoveAnimEnd");
         }
 
         @Override
         public void onBackToDesktop() {
+            // TODO 回到桌面  注：Application 注册了 Application.ActivityLifecycleCallbacks  该组件 可能会 出BUG
             Log.d(TAG, "onBackToDesktop");
         }
     };
