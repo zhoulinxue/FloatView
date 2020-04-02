@@ -34,6 +34,16 @@ android.useAndroidX=true
 # Automatically convert third-party libraries to use AndroidX
 android.enableJetifier=true
 ```
+**更新日志**
+--
+
+**v0.3.0**
+修复 application  实现了Application.ActivityLifecycleCallbacks 可能造成的bug
+
+```
+// 如果您的 application 实现了 Application.ActivityLifecycleCallbacks 接口 请先调用
+ FloatWindow.init(this);// 0.3.0 版本新增
+```
 
 
 ## 原著特性：

@@ -1,11 +1,16 @@
 package org.zhx.floatView.demo;
 
+import android.app.Activity;
 import android.app.Application;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.BounceInterpolator;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import org.zhx.floatView.FloatWindow;
 import org.zhx.floatView.MoveType;
@@ -16,9 +21,13 @@ import org.zhx.floatView.api.ViewStateListener;
 /**
  * Created by yhao on 2017/12/18.
  * https://github.com/yhaolpz
+ * <p>
+ * update by: zhx
+ * <p>
+ * 修复 application  实现了Application.ActivityLifecycleCallbacks 可能造成的bug
  */
 
-public class BaseApplication extends Application {
+public class BaseApplication extends Application implements Application.ActivityLifecycleCallbacks {
 
 
     private static final String TAG = "FloatWindow";
@@ -29,6 +38,8 @@ public class BaseApplication extends Application {
 
         ImageView imageView = new ImageView(getApplicationContext());
         imageView.setImageResource(R.drawable.icon);
+        // 如果您的 application 实现了 Application.ActivityLifecycleCallbacks 接口 请先调用
+        FloatWindow.init(this);// 0.3.0 版本新增
 
         FloatWindow
                 .with(getApplicationContext())
@@ -37,7 +48,7 @@ public class BaseApplication extends Application {
                 .setHeight(Screen.width, 0.2f)
                 .setX(Screen.width, 0.8f)
                 .setY(Screen.height, 0.3f)
-                .setMoveType(MoveType.slide,100,-100)
+                .setMoveType(MoveType.slide, 100, -100)
                 .setMoveStyle(500, new BounceInterpolator())
                 .setFilter(true, A_Activity.class, C_Activity.class)
                 .setViewStateListener(mViewStateListener)
@@ -115,4 +126,39 @@ public class BaseApplication extends Application {
             Log.d(TAG, "onBackToDesktop");
         }
     };
+
+    @Override
+    public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
+
+    }
+
+    @Override
+    public void onActivityStarted(@NonNull Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityResumed(@NonNull Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityPaused(@NonNull Activity activity) {
+
+    }
+
+    @Override
+    public void onActivityStopped(@NonNull Activity activity) {
+
+    }
+
+    @Override
+    public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {
+
+    }
+
+    @Override
+    public void onActivityDestroyed(@NonNull Activity activity) {
+
+    }
 }
