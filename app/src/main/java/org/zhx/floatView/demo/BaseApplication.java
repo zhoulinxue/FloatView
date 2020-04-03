@@ -58,7 +58,6 @@ public class BaseApplication extends Application implements Application.Activity
                 .setDesktopShow(true)
                 .build();
 
-
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
