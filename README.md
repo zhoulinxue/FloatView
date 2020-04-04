@@ -26,7 +26,7 @@ Androidx:
 方式二:在gradle.properties 添加：
 ```
 	dependencies {
-	        implementation 'org.zhx.common:floatView:0.1.0'
+	        implementation 'org.zhx.common:floatView:0.3.0'
 	}
 ```
 ```
