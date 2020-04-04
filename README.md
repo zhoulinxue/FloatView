@@ -43,7 +43,7 @@ android.enableJetifier=true
 
 ```
 // 如果您的 application 实现了 Application.ActivityLifecycleCallbacks 接口 请先调用
- FloatWindow.init(this);// 0.3.0 版本新增
+ FloatWindow.init(this);// 0.3.0 版本新增  Application  onCreat()中调用 且 不要再调用 registerActivityLifecycleCallbacks
 ```
 
 
