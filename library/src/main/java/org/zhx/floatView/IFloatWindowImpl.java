@@ -27,7 +27,7 @@ import org.zhx.floatView.utils.Util;
 public class IFloatWindowImpl extends IFloatWindow {
 
 
-    private FloatWindow.B mB;
+    private FloatWindow.Builder mB;
     private FloatView mFloatView;
     private FloatLifecycle mFloatLifecycle;
     private boolean isShow;
@@ -46,7 +46,7 @@ public class IFloatWindowImpl extends IFloatWindow {
 
     }
 
-    IFloatWindowImpl(FloatWindow.B b) {
+    IFloatWindowImpl(FloatWindow.Builder b) {
         mB = b;
         if (mB.mMoveType == MoveType.fixed) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {

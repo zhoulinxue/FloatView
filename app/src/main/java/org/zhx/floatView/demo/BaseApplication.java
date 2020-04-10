@@ -54,7 +54,7 @@ public class BaseApplication extends Application implements Application.Activity
                 .setViewStateListener(mViewStateListener)
                 .setPermissionListener(mPermissionListener)
                 //新增动画 显示和隐藏
-                .setAnimationStyle(R.style.windAnim)
+//                .setAnimationStyle(R.style.windAnim)
                 .setDesktopShow(true)
                 .build();
 

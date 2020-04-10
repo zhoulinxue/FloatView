@@ -6,9 +6,7 @@ import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 
-import androidx.annotation.AnimRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -53,11 +51,11 @@ public class FloatWindow {
         return mFloatWindowMap == null ? null : mFloatWindowMap.get(tag);
     }
 
-    private static B mBuilder = null;
+    private static Builder mBuilder = null;
 
     @MainThread
-    public static B with(@NonNull Context applicationContext) {
-        mBuilder = new B(applicationContext);
+    public static Builder with(@NonNull Context applicationContext) {
+        mBuilder = new Builder(applicationContext);
         if (activityLifecycleCallbacks != null) {
             mBuilder.setActivityLifecycleCallbacks(activityLifecycleCallbacks);
         }
@@ -76,7 +74,7 @@ public class FloatWindow {
         mFloatWindowMap.remove(tag);
     }
 
-    public static class B {
+    public static class Builder {
         Context mApplicationContext;
         View mView;
         private int mLayoutId;
@@ -100,7 +98,7 @@ public class FloatWindow {
         @StyleRes
         private int animtStyle;
 
-        private B() {
+        private Builder() {
 
         }
 
@@ -112,7 +110,7 @@ public class FloatWindow {
             this.animtStyle = animtStyle;
         }
 
-        public B setAnimationStyle(@StyleRes int style) {
+        public Builder setAnimationStyle(@StyleRes int style) {
             this.animtStyle=style;
             return this;
         }
@@ -121,36 +119,36 @@ public class FloatWindow {
             return activityLifecycleCallbacks;
         }
 
-        public B setActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks activityLifecycleCallbacks) {
+        public Builder setActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks activityLifecycleCallbacks) {
             this.activityLifecycleCallbacks = activityLifecycleCallbacks;
             return this;
         }
 
-        B(Context applicationContext) {
+        Builder(Context applicationContext) {
             mApplicationContext = applicationContext;
         }
 
-        public B setView(@NonNull View view) {
+        public Builder setView(@NonNull View view) {
             mView = view;
             return this;
         }
 
-        public B setView(@LayoutRes int layoutId) {
+        public Builder setView(@LayoutRes int layoutId) {
             mLayoutId = layoutId;
             return this;
         }
 
-        public B setWidth(int width) {
+        public Builder setWidth(int width) {
             mWidth = width;
             return this;
         }
 
-        public B setHeight(int height) {
+        public Builder setHeight(int height) {
             mHeight = height;
             return this;
         }
 
-        public B setWidth(@Screen.screenType int screenType, float ratio) {
+        public Builder setWidth(@Screen.screenType int screenType, float ratio) {
             mWidth = (int) ((screenType == Screen.width ?
                     Util.getScreenWidth(mApplicationContext) :
                     Util.getScreenHeight(mApplicationContext)) * ratio);
@@ -158,7 +156,7 @@ public class FloatWindow {
         }
 
 
-        public B setHeight(@Screen.screenType int screenType, float ratio) {
+        public Builder setHeight(@Screen.screenType int screenType, float ratio) {
             mHeight = (int) ((screenType == Screen.width ?
                     Util.getScreenWidth(mApplicationContext) :
                     Util.getScreenHeight(mApplicationContext)) * ratio);
@@ -166,24 +164,24 @@ public class FloatWindow {
         }
 
 
-        public B setX(int x) {
+        public Builder setX(int x) {
             xOffset = x;
             return this;
         }
 
-        public B setY(int y) {
+        public Builder setY(int y) {
             yOffset = y;
             return this;
         }
 
-        public B setX(@Screen.screenType int screenType, float ratio) {
+        public Builder setX(@Screen.screenType int screenType, float ratio) {
             xOffset = (int) ((screenType == Screen.width ?
                     Util.getScreenWidth(mApplicationContext) :
                     Util.getScreenHeight(mApplicationContext)) * ratio);
             return this;
         }
 
-        public B setY(@Screen.screenType int screenType, float ratio) {
+        public Builder setY(@Screen.screenType int screenType, float ratio) {
             yOffset = (int) ((screenType == Screen.width ?
                     Util.getScreenWidth(mApplicationContext) :
                     Util.getScreenHeight(mApplicationContext)) * ratio);
@@ -197,13 +195,13 @@ public class FloatWindow {
          * @param show       　过滤类型,子类类型也会生效
          * @param activities 　过滤界面
          */
-        public B setFilter(boolean show, @NonNull Class... activities) {
+        public Builder setFilter(boolean show, @NonNull Class... activities) {
             mShow = show;
             mActivities = activities;
             return this;
         }
 
-        public B setMoveType(@MoveType.MOVE_TYPE int moveType) {
+        public Builder setMoveType(@MoveType.MOVE_TYPE int moveType) {
             return setMoveType(moveType, 0, 0);
         }
 
@@ -215,35 +213,35 @@ public class FloatWindow {
          * @param slideLeftMargin  贴边动画左边距，默认为 0
          * @param slideRightMargin 贴边动画右边距，默认为 0
          */
-        public B setMoveType(@MoveType.MOVE_TYPE int moveType, int slideLeftMargin, int slideRightMargin) {
+        public Builder setMoveType(@MoveType.MOVE_TYPE int moveType, int slideLeftMargin, int slideRightMargin) {
             mMoveType = moveType;
             mSlideLeftMargin = slideLeftMargin;
             mSlideRightMargin = slideRightMargin;
             return this;
         }
 
-        public B setMoveStyle(long duration, @Nullable TimeInterpolator interpolator) {
+        public Builder setMoveStyle(long duration, @Nullable TimeInterpolator interpolator) {
             mDuration = duration;
             mInterpolator = interpolator;
             return this;
         }
 
-        public B setTag(@NonNull String tag) {
+        public Builder setTag(@NonNull String tag) {
             mTag = tag;
             return this;
         }
 
-        public B setDesktopShow(boolean show) {
+        public Builder setDesktopShow(boolean show) {
             mDesktopShow = show;
             return this;
         }
 
-        public B setPermissionListener(PermissionListener listener) {
+        public Builder setPermissionListener(PermissionListener listener) {
             mPermissionListener = listener;
             return this;
         }
 
-        public B setViewStateListener(ViewStateListener listener) {
+        public Builder setViewStateListener(ViewStateListener listener) {
             mViewStateListener = listener;
             return this;
         }
