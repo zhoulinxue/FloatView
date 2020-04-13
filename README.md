@@ -34,6 +34,25 @@ android.useAndroidX=true
 # Automatically convert third-party libraries to use AndroidX
 android.enableJetifier=true
 ```
+代码：
+```
+   FloatWindow
+                .with(getApplicationContext())
+                .setView(imageView)
+                .setWidth(Screen.width, 0.2f) //设置悬浮控件宽高
+                .setHeight(Screen.width, 0.2f)
+                .setX(Screen.width, 0.8f)
+                .setY(Screen.height, 0.3f)
+                .setMoveType(MoveType.slide, 0, 0)
+                .setMoveStyle(500, new BounceInterpolator())
+                .setFilter(true, A_Activity.class, C_Activity.class)
+                .setViewStateListener(mViewStateListener)
+                .setPermissionListener(mPermissionListener)
+                //新增动画 显示和隐藏
+//                .setAnimationStyle(R.style.windAnim)
+                .setDesktopShow(true)
+                .build();
+```
 **更新日志**
 --
 
