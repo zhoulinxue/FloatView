@@ -52,6 +52,8 @@ android.enableJetifier=true
 //                .setAnimationStyle(R.style.windAnim)
                 .setDesktopShow(true)
                 .build();
+		//  FloatWindow.get(TAG).show();
+	       FloatWindow.get().show();
 ```
 **更新日志**
 --
