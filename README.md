@@ -17,21 +17,10 @@ Androidx:
 	        implementation 'org.zhx.common:floatView:0.3.0'
 	}
 ```
-注意：appcompat （v7包）适配 方式一：
-```
-	dependencies {
-	       implementation 'org.zhx.common:floatView:0.4.0'
-	}
-```
-方式二:在gradle.properties 添加：
-```
-	dependencies {
-	        implementation 'org.zhx.common:floatView:0.3.0'
-	}
-```
+注意：appcompat （未使用Androidx）引用：
+在gradle.properties 添加：
 ```
 android.useAndroidX=true
-# Automatically convert third-party libraries to use AndroidX
 android.enableJetifier=true
 ```
 代码：
